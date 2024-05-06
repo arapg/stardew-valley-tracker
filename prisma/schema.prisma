@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Room {
+  name      String   @id @unique
+  reward    String
+  completed Boolean  @default(false)
+  bundles   Bundle[]
+}
+
+model Bundle {
+  name      String  @id @unique
+  reward    String
+  completed Boolean @default(false)
+  room      Room    @relation(fields: [roomName], references: [name])
+  items     Item[]
+  roomName  String
+}
+
+model Item {
+  id         Int     @id @default(autoincrement())
+  name       String
+  quantity   Int
+  completed  Boolean @default(false)
+  bundle     Bundle  @relation(fields: [bundleName], references: [name])
+  bundleName String
+}
