@@ -9,26 +9,64 @@ datasource db {
 }
 
 model Room {
-  name      String   @id @unique
-  reward    String
-  completed Boolean  @default(false)
-  bundles   Bundle[]
+  name    String   @id @unique
+  reward  String
+  bundles Bundle[]
 }
 
 model Bundle {
-  name      String  @id @unique
-  reward    String
-  completed Boolean @default(false)
-  room      Room    @relation(fields: [roomName], references: [name])
-  items     Item[]
-  roomName  String
+  name     String @id @unique
+  reward   String
+  room     Room   @relation(fields: [roomName], references: [name])
+  items    Item[]
+  roomName String
 }
 
 model Item {
-  id         Int     @id @default(autoincrement())
+  id         Int    @id @default(autoincrement())
   name       String
   quantity   Int
-  completed  Boolean @default(false)
-  bundle     Bundle  @relation(fields: [bundleName], references: [name])
+  bundle     Bundle @relation(fields: [bundleName], references: [name])
   bundleName String
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  username         String
+  selectedBundles  SelectedBundle[]
+  completedBundles CompletedBundle[]
+  completedRooms   CompletedRoom[]
+  completedItems   CompletedItem[]
+}
+
+model SelectedBundle {
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@id([userId, name])
+}
+
+model CompletedBundle {
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@id([userId, name])
+}
+
+model CompletedRoom {
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@id([userId, name])
+}
+
+model CompletedItem {
+  id     Int
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@id([userId, id])
 }
