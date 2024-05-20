@@ -34,7 +34,7 @@ model Item {
 }
 
 model Farmer {
-  id               Int               @id @default(autoincrement())
+  id               String            @id
   username         String
   selectedBundles  SelectedBundle[]
   completedBundles CompletedBundle[]
@@ -45,7 +45,7 @@ model Farmer {
 model SelectedBundle {
   name     String
   farmer   Farmer @relation(fields: [farmerId], references: [id])
-  farmerId Int
+  farmerId String
 
   @@id([farmerId, name])
 }
@@ -53,7 +53,7 @@ model SelectedBundle {
 model CompletedBundle {
   name     String
   farmer   Farmer @relation(fields: [farmerId], references: [id])
-  farmerId Int
+  farmerId String
 
   @@id([farmerId, name])
 }
@@ -61,7 +61,7 @@ model CompletedBundle {
 model CompletedRoom {
   name     String
   farmer   Farmer @relation(fields: [farmerId], references: [id])
-  farmerId Int
+  farmerId String
 
   @@id([farmerId, name])
 }
@@ -69,7 +69,7 @@ model CompletedRoom {
 model CompletedItem {
   id       Int
   farmer   Farmer @relation(fields: [farmerId], references: [id])
-  farmerId Int
+  farmerId String
 
   @@id([farmerId, id])
 }
