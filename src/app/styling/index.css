@@ -1,0 +1,75 @@
+.my-masonry-grid {
+  display: flex;
+  margin-left: -30px;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px;
+  background-clip: padding-box;
+}
+
+h3, p, span {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: #232320;
+  background-color: #f0f8ed;
+}
+
+.item-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  max-width: 400px;
+}
+
+.item-card {
+  padding: 10px;
+  margin: 10px 20px 20px 0;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.item-card img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.bundle-wrapper {
+  margin: auto;
+  width: 70%;
+}
+
+.bundle-card {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  width: 390px;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  margin-bottom: 40px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+.bundle-card .bundle-info {
+  display: flex;
+  height: 75px;
+  padding: 20px;
+}
+.bundle-card .bundle-info .bundle-title {
+  height: 75px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bundle-card .bundle-info .bundle-title span {
+  font-weight: bold;
+}
+.bundle-card img {
+  width: 75px;
+  height: 75px;
+}/*# sourceMappingURL=index.css.map */
