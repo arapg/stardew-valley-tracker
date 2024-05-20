@@ -5,5 +5,11 @@ import { useEffect, useState } from 'react'
 import Bundles from './Bundles'
 
 export default function Home() {
-	return <Bundles />
+	return (
+		<>
+			<a href='/api/auth/login'>Login</a>
+			<a href='/api/auth/logout'>Logout</a>
+			<Bundles />
+		</>
+	)
 }
