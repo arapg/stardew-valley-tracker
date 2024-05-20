@@ -18,6 +18,7 @@ model Bundle {
   name     String @id @unique
   reward   String
   slots    Int
+  url      String @default("")
   room     Room   @relation(fields: [roomName], references: [name])
   items    Item[]
   roomName String
