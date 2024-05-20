@@ -2,19 +2,26 @@
   "name": "stardew-valley-tracker",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "devStart": "nodemon src/app/database.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
     "@vercel/postgres": "^0.8.0",
     "next": "14.2.3",
+    "nodemon": "^3.1.0",
     "prisma": "^5.13.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-masonry-css": "^1.0.16",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -22,6 +29,6 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
-    "typescript": "^5"
+    "typescript": "^5.4.5"
   }
 }
