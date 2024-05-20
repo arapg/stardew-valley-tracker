@@ -9,17 +9,17 @@ import { UserProvider, useUser } from '@auth0/nextjs-auth0/client'
 
 export default function Home() {
 	const { user } = useUser()
-	// useEffect(() => {
-	// 	if (user) {
-	// 		fetch('/api/saveUser', {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Content-Type': 'application/json',
-	// 			},
-	// 			body: JSON.stringify({ user }),
-	// 		})
-	// 	}
-	// }, [user])
+	useEffect(() => {
+		if (user) {
+			fetch('/api/saveUser', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ user }),
+			})
+		}
+	}, [user])
 	return (
 		<>
 			<a href='/api/auth/login'>Login</a>
