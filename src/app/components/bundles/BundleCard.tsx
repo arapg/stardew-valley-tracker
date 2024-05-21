@@ -1,15 +1,64 @@
+'use client'
+
 import '../../styling/index.css'
-import { Bundle, Item } from '../../Bundles'
+import { useEffect, useState } from 'react'
+import useCompletedItemsStore from '../../states/completedItems'
+import useUserIDStore from '../../states/userID'
+
+interface Item {
+	id: number
+	name: string
+	url: string
+}
+
+interface Bundle {
+	name: string
+	url: string
+	slots: number
+	reward: string
+}
 
 interface BundleCardProps {
 	bundle: Bundle | null
-	items: Item[] | []
+	items: Item[]
+	//userID: string | undefined | null
+	completedItems: number[]
 }
 
-export default function BundleCard({ bundle, items }: BundleCardProps) {
+export default function BundleCard({
+	bundle,
+	items,
+	//userID,
+	completedItems,
+}: BundleCardProps) {
+	const { userID } = useUserIDStore()
+	const { refetchCompletedItems, setRefetchCompletedItems } =
+		useCompletedItemsStore()
+
 	if (!bundle) {
 		return <p>Loading...</p>
 	}
+
+	function handleClick(itemID: number) {
+		console.log(itemID)
+		try {
+			fetch(`/api/save/item`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ userID, itemID }),
+			})
+			setRefetchCompletedItems(true)
+		} catch (error) {
+			console.error(error)
+		}
+		console.log(completedItems)
+	}
+
+	// useEffect(() => {
+	// 	fetchCompletedItems()
+	// }, [])
 
 	return (
 		<div className='bundle-card'>
@@ -26,9 +75,15 @@ export default function BundleCard({ bundle, items }: BundleCardProps) {
 
 			<div className='item-container'>
 				{items.map((item) => (
-					<div className='item-card' key={item.id}>
+					<div
+						className={`item-card ${
+							completedItems.includes(item.id) ? 'completed' : ''
+						}`}
+						key={item.id}
+						onClick={() => handleClick(item.id)}
+					>
 						<div>
-							<img src={item.url} alt={`Item icon for ${item.name}.`} />
+							<img src={item.url} alt={item.name} />
 						</div>
 					</div>
 				))}
