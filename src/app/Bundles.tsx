@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-import styles from './page.module.css'
 import BundleCard from './components/bundles/BundleCard'
 import { useEffect, useState } from 'react'
 import Masonry from 'react-masonry-css'
@@ -25,6 +23,22 @@ export interface Item {
 export default function Bundles() {
 	const [bundles, setBundles] = useState<Bundle[]>([])
 	const [items, setItems] = useState<Item[]>([])
+	const [userID, setUserID] = useState('')
+
+	async function fetchUser() {
+		try {
+			const response = await fetch('/api/auth/me', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+			const data = await response.json()
+			setUserID(data.sub)
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	async function fetchBundles() {
 		try {
@@ -57,6 +71,7 @@ export default function Bundles() {
 	}
 
 	useEffect(() => {
+		fetchUser()
 		fetchBundles()
 		fetchItems()
 	}, [])
@@ -73,43 +88,37 @@ export default function Bundles() {
 	)
 
 	return (
-		<div>
-			{Object.keys(bundlesByRoom).map((roomName) => (
-				<div key={roomName}>
-					<h2>{roomName}</h2>
-					<div className='bundle-wrapper'>
-						<Masonry
-							breakpointCols={3}
-							className='my-masonry-grid'
-							columnClassName='my-masonry-grid_column'
-						>
-							{bundlesByRoom[roomName].map((bundle) => {
-								const bundleItems = items.filter(
-									(item) => item.bundleName === bundle.name,
-								)
-								return (
-									<BundleCard
-										key={bundle.name}
-										bundle={bundle}
-										items={bundleItems}
-									/>
-								)
-							})}
-						</Masonry>
+		<>
+			<a href='/api/auth/logout'>Log out</a>
+			<div>
+				{Object.keys(bundlesByRoom).map((roomName) => (
+					<div key={roomName}>
+						<h2>{roomName}</h2>
+						<div className='bundle-wrapper'>
+							<Masonry
+								breakpointCols={3}
+								className='my-masonry-grid'
+								columnClassName='my-masonry-grid_column'
+							>
+								{bundlesByRoom[roomName].map((bundle) => {
+									const bundleItems = items.filter(
+										(item) => item.bundleName === bundle.name,
+									)
+									return (
+										<BundleCard
+											key={bundle.name}
+											bundle={bundle}
+											items={bundleItems}
+											userID={userID}
+										/>
+									)
+								})}
+							</Masonry>
+						</div>
+						<hr /> {/* Divider between room groups */}
 					</div>
-					<hr /> {/* Divider between room groups */}
-				</div>
-			))}
-		</div>
-		// <div>
-		// 	{bundles.map((bundle) => {
-		// 		const bundleItems = items.filter(
-		// 			(item) => item.bundleName === bundle.name,
-		// 		)
-		// 		return (
-		// 			<BundleCard key={bundle.name} bundle={bundle} items={bundleItems} />
-		// 		)
-		// 	})}
-		// </div>
+				))}
+			</div>
+		</>
 	)
 }
