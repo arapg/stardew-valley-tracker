@@ -17,7 +17,6 @@ export async function POST(
                 }
             }
         })
-        console.log(completedItem)
 
         if(completedItem) {
             await prisma.completedItem.delete({

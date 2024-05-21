@@ -57,7 +57,6 @@ export default function Bundles() {
 			const data = await response.json()
 			const ids = data.map((item: { id: number }) => item.id) // Extracting IDs
 			setCompletedItems(ids)
-			console.log('Fetched completed items:' + ids)
 			setRefetchCompletedItems(false)
 		} catch (error) {
 			console.error(error)
@@ -138,7 +137,6 @@ export default function Bundles() {
 											key={bundle.name}
 											bundle={bundle}
 											items={bundleItems}
-											// userID={userID}
 											completedItems={completedItems}
 										/>
 									)

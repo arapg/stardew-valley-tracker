@@ -10,7 +10,6 @@ export async function GET(
         const items = await prisma.completedItem.findMany({
             where: { farmerId: params.userID }
         })
-        console.log(items)
         return NextResponse.json(items)
     } catch (error) {
         console.log(error)
