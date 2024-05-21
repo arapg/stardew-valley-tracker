@@ -21,14 +21,12 @@ interface Bundle {
 interface BundleCardProps {
 	bundle: Bundle | null
 	items: Item[]
-	//userID: string | undefined | null
 	completedItems: number[]
 }
 
 export default function BundleCard({
 	bundle,
 	items,
-	//userID,
 	completedItems,
 }: BundleCardProps) {
 	const { userID } = useUserIDStore()
@@ -40,7 +38,6 @@ export default function BundleCard({
 	}
 
 	function handleClick(itemID: number) {
-		console.log(itemID)
 		try {
 			fetch(`/api/save/item`, {
 				method: 'POST',
@@ -48,20 +45,16 @@ export default function BundleCard({
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({ userID, itemID }),
+			}).then(() => {
+				setRefetchCompletedItems(!refetchCompletedItems)
 			})
-			setRefetchCompletedItems(true)
 		} catch (error) {
 			console.error(error)
 		}
-		console.log(completedItems)
 	}
 
-	// useEffect(() => {
-	// 	fetchCompletedItems()
-	// }, [])
-
 	return (
-		<div className='bundle-card'>
+		<div className='bundle-card completed'>
 			<div className='bundle-info'>
 				<img src={bundle.url} alt={`${bundle.name} Bundle icon.`} />
 				<div className='bundle-title'>
