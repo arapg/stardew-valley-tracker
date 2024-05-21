@@ -3,6 +3,8 @@
 import BundleCard from './components/bundles/BundleCard'
 import { useEffect, useState } from 'react'
 import Masonry from 'react-masonry-css'
+import useCompletedItemsStore from './states/completedItems'
+import useUserIDStore from './states/userID'
 
 export interface Bundle {
 	name: string
@@ -23,7 +25,10 @@ export interface Item {
 export default function Bundles() {
 	const [bundles, setBundles] = useState<Bundle[]>([])
 	const [items, setItems] = useState<Item[]>([])
-	const [userID, setUserID] = useState('')
+	const [completedItems, setCompletedItems] = useState<number[]>([])
+	const { userID, setUserID } = useUserIDStore()
+	const { refetchCompletedItems, setRefetchCompletedItems } =
+		useCompletedItemsStore()
 
 	async function fetchUser() {
 		try {
@@ -37,6 +42,25 @@ export default function Bundles() {
 			setUserID(data.sub)
 		} catch (error) {
 			console.log(error)
+		}
+		setRefetchCompletedItems(true)
+	}
+
+	async function fetchCompletedItems() {
+		try {
+			const response = await fetch(`/api/user/items/${userID}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+			const data = await response.json()
+			const ids = data.map((item: { id: number }) => item.id) // Extracting IDs
+			setCompletedItems(ids)
+			console.log('Fetched completed items:' + ids)
+			setRefetchCompletedItems(false)
+		} catch (error) {
+			console.error(error)
 		}
 	}
 
@@ -68,6 +92,7 @@ export default function Bundles() {
 		} catch (error) {
 			console.log(error)
 		}
+		setRefetchCompletedItems(false)
 	}
 
 	useEffect(() => {
@@ -75,6 +100,10 @@ export default function Bundles() {
 		fetchBundles()
 		fetchItems()
 	}, [])
+
+	useEffect(() => {
+		fetchCompletedItems()
+	}, [refetchCompletedItems])
 
 	const bundlesByRoom: { [key: string]: Bundle[] } = bundles.reduce(
 		(acc, bundle) => {
@@ -109,7 +138,8 @@ export default function Bundles() {
 											key={bundle.name}
 											bundle={bundle}
 											items={bundleItems}
-											userID={userID}
+											// userID={userID}
+											completedItems={completedItems}
 										/>
 									)
 								})}
