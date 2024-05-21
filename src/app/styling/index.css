@@ -15,7 +15,11 @@ h3, p, span {
 
 body {
   color: #232320;
-  background-color: #f0f8ed;
+  background-color: #e6f4dd;
+}
+
+.landing {
+  text-align: center;
 }
 
 .item-container {

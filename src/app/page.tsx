@@ -1,11 +1,10 @@
 'use client'
 
-import Image from 'next/image'
-import styles from './page.module.css'
-
 import { useEffect, useState } from 'react'
+import './styling/index.css'
 import Bundles from './Bundles'
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client'
+import Landing from './Landing'
 
 export default function Home() {
 	const { user } = useUser()
@@ -20,11 +19,6 @@ export default function Home() {
 			})
 		}
 	}, [user])
-	return (
-		<>
-			<a href='/api/auth/login'>Login</a>
-			<a href='/api/auth/logout'>Logout</a>
-			<Bundles />
-		</>
-	)
+
+	return <>{!user ? <Landing /> : <Bundles />}</>
 }
