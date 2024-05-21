@@ -20,6 +20,12 @@ body {
 
 .landing {
   text-align: center;
+  margin-top: 200px;
+}
+
+.wrapper {
+  margin: auto;
+  width: 70%;
 }
 
 .item-container {
@@ -45,11 +51,6 @@ body {
 .item-card img {
   max-width: 50px;
   max-height: 50px;
-}
-
-.bundle-wrapper {
-  margin: auto;
-  width: 70%;
 }
 
 .bundle-card {

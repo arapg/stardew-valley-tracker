@@ -20,5 +20,5 @@ export default function Home() {
 		}
 	}, [user])
 
-	return <>{!user ? <Landing /> : <Bundles />}</>
+	return <div className='wrapper'>{!user ? <Landing /> : <Bundles />}</div>
 }
