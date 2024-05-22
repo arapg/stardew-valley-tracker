@@ -6,6 +6,11 @@ import useCompletedItemsStore from './states/completedItems'
 import useUserIDStore from './states/userID'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
+export interface Room {
+	name: string
+	reward: string
+}
+
 export interface Bundle {
 	name: string
 	reward: string
@@ -23,6 +28,7 @@ export interface Item {
 }
 
 export default function Bundles() {
+	const [rooms, setRooms] = useState<Room[]>([])
 	const [bundles, setBundles] = useState<Bundle[]>([])
 	const [items, setItems] = useState<Item[]>([])
 	const [completedItems, setCompletedItems] = useState<number[]>([])
@@ -63,6 +69,21 @@ export default function Bundles() {
 		}
 	}
 
+	async function fetchRooms() {
+		try {
+			const response = await fetch('/api/rooms', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+			const data = await response.json()
+			setRooms(data)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	async function fetchBundles() {
 		try {
 			const response = await fetch('/api/bundles', {
@@ -96,6 +117,7 @@ export default function Bundles() {
 
 	useEffect(() => {
 		fetchUser()
+		fetchRooms()
 		fetchBundles()
 		fetchItems()
 	}, [])
@@ -123,8 +145,15 @@ export default function Bundles() {
 			<h1>Bundles</h1>
 			<div>
 				{Object.keys(bundlesByRoom).map((roomName) => (
-					<div key={roomName}>
-						<h2>{roomName}</h2>
+					<div className='room-wrapper' key={roomName}>
+						<div className='room-info'>
+							<h2>{roomName}</h2>
+							<p>
+								<strong>Reward: </strong>
+								{rooms.find((room) => room.name === roomName)?.reward}
+							</p>
+						</div>
+
 						<div className='bundle-wrapper'>
 							<ResponsiveMasonry>
 								<Masonry columnsCount={2}>
@@ -144,7 +173,6 @@ export default function Bundles() {
 								</Masonry>
 							</ResponsiveMasonry>
 						</div>
-						<hr /> {/* Divider between room groups */}
 					</div>
 				))}
 			</div>
