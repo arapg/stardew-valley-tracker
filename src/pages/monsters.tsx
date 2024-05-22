@@ -1,9 +1,10 @@
 'use client'
 
+import '../app/styling/index.css'
 import { useEffect, useState } from 'react'
-import useUserIDStore from '../states/userID'
-import useCompletedEradicationGoalsStore from '../states/completedEradicationGoals'
-import EradicationGoalCard from '../components/EradicationCard'
+import useUserIDStore from '../app/states/userID'
+import useCompletedEradicationGoalsStore from '../app/states/completedEradicationGoals'
+import EradicationGoalCard from '../app/components/EradicationCard'
 
 export interface MonsterEradicationGoal {
 	id: number

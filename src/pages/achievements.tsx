@@ -1,9 +1,10 @@
 'use client'
 
+import '../app/styling/index.css'
 import { useEffect, useState } from 'react'
-import useUserIDStore from '../states/userID'
-import useCompletedAchievementsStore from '../states/completedAchievements'
-import AchievementCard from '../components/AchievementCard'
+import useUserIDStore from '../app/states/userID'
+import useCompletedAchievementsStore from '../app/states/completedAchievements'
+import AchievementCard from '../app/components/AchievementCard'
 
 export interface Achievement {
 	id: number

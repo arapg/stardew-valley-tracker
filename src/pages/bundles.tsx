@@ -1,9 +1,10 @@
 'use client'
 
-import BundleCard from '../components/BundleCard'
+import '../app/styling/index.css'
+import BundleCard from '../app/components/BundleCard'
 import { useEffect, useState } from 'react'
-import useCompletedItemsStore from '../states/completedItems'
-import useUserIDStore from '../states/userID'
+import useCompletedItemsStore from '../app/states/completedItems'
+import useUserIDStore from '../app/states/userID'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 export interface Room {

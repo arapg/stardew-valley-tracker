@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 import './styling/index.css'
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client'
-import Landing from './pages/Landing'
-import MonsterEradicationGoals from './pages/monsters'
-import Bundles from './pages/Bundles'
-import Achievements from './pages/achievements'
+import Landing from '../pages/Landing'
+import MonsterEradicationGoals from '../pages/monsters'
+import Bundles from '../pages/bundles'
+import Achievements from '../pages/achievements'
 
 export default function Home() {
 	const { user } = useUser()
