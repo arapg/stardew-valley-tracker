@@ -51,10 +51,6 @@ export default function BundleCard({
 		}
 	}
 
-	if (!bundle) {
-		return <p>Loading...</p>
-	}
-
 	useEffect(() => {
 		if (items.every((item) => completedItems.includes(item.id))) {
 			setBundleIsCompleted(true)
@@ -62,6 +58,10 @@ export default function BundleCard({
 			setBundleIsCompleted(false)
 		}
 	}, [completedItems, items])
+
+	if (!bundle) {
+		return <p>Loading...</p>
+	}
 
 	return (
 		<div className={`bundle-card `}>
