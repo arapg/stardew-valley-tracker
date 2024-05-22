@@ -2,9 +2,9 @@
 
 import BundleCard from './components/bundles/BundleCard'
 import { useEffect, useState } from 'react'
-import Masonry from 'react-masonry-css'
 import useCompletedItemsStore from './states/completedItems'
 import useUserIDStore from './states/userID'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 export interface Bundle {
 	name: string
@@ -117,31 +117,32 @@ export default function Bundles() {
 
 	return (
 		<>
-			<a href='/api/auth/logout'>Log out</a>
+			<a href='/api/auth/logout'>
+				<button>Log Out</button>
+			</a>
+			<h1>Bundles</h1>
 			<div>
 				{Object.keys(bundlesByRoom).map((roomName) => (
 					<div key={roomName}>
 						<h2>{roomName}</h2>
 						<div className='bundle-wrapper'>
-							<Masonry
-								breakpointCols={3}
-								className='my-masonry-grid'
-								columnClassName='my-masonry-grid_column'
-							>
-								{bundlesByRoom[roomName].map((bundle) => {
-									const bundleItems = items.filter(
-										(item) => item.bundleName === bundle.name,
-									)
-									return (
-										<BundleCard
-											key={bundle.name}
-											bundle={bundle}
-											items={bundleItems}
-											completedItems={completedItems}
-										/>
-									)
-								})}
-							</Masonry>
+							<ResponsiveMasonry>
+								<Masonry columnsCount={2}>
+									{bundlesByRoom[roomName].map((bundle) => {
+										const bundleItems = items.filter(
+											(item) => item.bundleName === bundle.name,
+										)
+										return (
+											<BundleCard
+												key={bundle.name}
+												bundle={bundle}
+												items={bundleItems}
+												completedItems={completedItems}
+											/>
+										)
+									})}
+								</Masonry>
+							</ResponsiveMasonry>
 						</div>
 						<hr /> {/* Divider between room groups */}
 					</div>
