@@ -1,7 +1,7 @@
-import { Achievement } from '../Achievements'
 import useUserIDStore from '../states/userID'
 import useCompletedAchievementsStore from '../states/completedAchievements'
 import { useEffect, useState } from 'react'
+import { Achievement } from '../pages/achievements'
 
 interface AchievementCardProps {
 	achievement: Achievement

@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import useUserIDStore from './states/userID'
-import useCompletedEradicationGoalsStore from './states/completedEradicationGoals'
-import EradicationGoalCard from './components/EradicationCard'
+import useUserIDStore from '../states/userID'
+import useCompletedEradicationGoalsStore from '../states/completedEradicationGoals'
+import EradicationGoalCard from '../components/EradicationCard'
 
 export interface MonsterEradicationGoal {
 	id: number

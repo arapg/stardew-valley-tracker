@@ -1,4 +1,4 @@
-import { MonsterEradicationGoal } from '../MonsterEradicationGoals'
+import { MonsterEradicationGoal } from '../pages/monsters'
 import useUserIDStore from '../states/userID'
 import useCompletedEradicationGoalsStore from '../states/completedEradicationGoals'
 import { useEffect, useState } from 'react'
