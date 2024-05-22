@@ -35,10 +35,6 @@ export default function BundleCard({
 		useCompletedItemsStore()
 	const [bundleIsCompleted, setBundleIsCompleted] = useState(false)
 
-	if (!bundle) {
-		return <p>Loading...</p>
-	}
-
 	function handleClick(itemID: number) {
 		try {
 			fetch(`/api/save/item`, {
@@ -53,6 +49,10 @@ export default function BundleCard({
 		} catch (error) {
 			console.error(error)
 		}
+	}
+
+	if (!bundle) {
+		return <p>Loading...</p>
 	}
 
 	useEffect(() => {
