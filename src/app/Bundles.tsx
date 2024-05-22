@@ -1,6 +1,6 @@
 'use client'
 
-import BundleCard from './components/bundles/BundleCard'
+import BundleCard from './components/BundleCard'
 import { useEffect, useState } from 'react'
 import useCompletedItemsStore from './states/completedItems'
 import useUserIDStore from './states/userID'

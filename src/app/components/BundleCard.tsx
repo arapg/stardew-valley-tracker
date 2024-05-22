@@ -2,8 +2,8 @@
 
 import '../../styling/index.css'
 import { useEffect, useState } from 'react'
-import useCompletedItemsStore from '../../states/completedItems'
-import useUserIDStore from '../../states/userID'
+import useCompletedItemsStore from '../states/completedItems'
+import useUserIDStore from '../states/userID'
 
 interface Item {
 	id: number
