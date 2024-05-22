@@ -8,6 +8,7 @@ import useUserIDStore from '../../states/userID'
 interface Item {
 	id: number
 	name: string
+	quantity: number
 	url: string
 }
 
@@ -32,6 +33,7 @@ export default function BundleCard({
 	const { userID } = useUserIDStore()
 	const { refetchCompletedItems, setRefetchCompletedItems } =
 		useCompletedItemsStore()
+	const [bundleIsCompleted, setBundleIsCompleted] = useState(false)
 
 	if (!bundle) {
 		return <p>Loading...</p>
@@ -53,13 +55,21 @@ export default function BundleCard({
 		}
 	}
 
+	useEffect(() => {
+		if (items.every((item) => completedItems.includes(item.id))) {
+			setBundleIsCompleted(true)
+		} else {
+			setBundleIsCompleted(false)
+		}
+	}, [completedItems, items])
+
 	return (
-		<div className='bundle-card completed'>
-			<div className='bundle-info'>
+		<div className={`bundle-card `}>
+			<div className={`bundle-info ${bundleIsCompleted ? 'completed' : ''}`}>
 				<img src={bundle.url} alt={`${bundle.name} Bundle icon.`} />
 				<div className='bundle-title'>
 					<h3>{bundle.name} Bundle</h3>
-					<p>{bundle.slots} items remaining</p>
+					<p>{bundle.slots} items needed</p>
 					<p>
 						<span>Reward:</span> {bundle.reward}
 					</p>
@@ -76,7 +86,17 @@ export default function BundleCard({
 						onClick={() => handleClick(item.id)}
 					>
 						<div>
+							{item.quantity > 1 && (
+								<span className='quantity-badge'>{item.quantity}</span>
+							)}
 							<img src={item.url} alt={item.name} />
+							{item.name.includes('Gold Star') && (
+								<img
+									className='img-overlay'
+									src='https://stardewvalleywiki.com/mediawiki/images/4/47/Gold_Quality_Icon.png'
+									alt='Gold Star'
+								/>
+							)}
 						</div>
 					</div>
 				))}
