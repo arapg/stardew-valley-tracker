@@ -33,13 +33,39 @@ model Item {
   bundleName String
 }
 
+model Fish {
+  id        Int      @id @default(autoincrement())
+  name      String
+  locations String[]
+  time      String
+  weather   String
+  seasons   String[]
+  url       String
+}
+
+model Achievement {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  url         String
+}
+
+model MonsterEradicationGoal {
+  id       Int    @id @default(autoincrement())
+  monster  String
+  quantity Int
+  url      String
+}
+
 model Farmer {
-  id               String            @id
-  username         String
-  selectedBundles  SelectedBundle[]
-  completedBundles CompletedBundle[]
-  completedRooms   CompletedRoom[]
-  completedItems   CompletedItem[]
+  id                               String                            @id
+  username                         String
+  selectedBundles                  SelectedBundle[]
+  completedBundles                 CompletedBundle[]
+  completedRooms                   CompletedRoom[]
+  completedItems                   CompletedItem[]
+  completedAchievements            CompletedAchievement[]
+  completedMonsterEradicationGoals CompletedMonsterEradicationGoal[]
 }
 
 model SelectedBundle {
@@ -67,6 +93,22 @@ model CompletedRoom {
 }
 
 model CompletedItem {
+  id       Int
+  farmer   Farmer @relation(fields: [farmerId], references: [id])
+  farmerId String
+
+  @@id([farmerId, id])
+}
+
+model CompletedAchievement {
+  id       Int
+  farmer   Farmer @relation(fields: [farmerId], references: [id])
+  farmerId String
+
+  @@id([farmerId, id])
+}
+
+model CompletedMonsterEradicationGoal {
   id       Int
   farmer   Farmer @relation(fields: [farmerId], references: [id])
   farmerId String
