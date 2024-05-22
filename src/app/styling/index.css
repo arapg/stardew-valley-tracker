@@ -13,6 +13,32 @@ body {
   margin-top: 200px;
 }
 
+.achievement-card {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  width: full;
+  margin-bottom: 40px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+.achievement-card img {
+  width: 75px;
+  height: 75px;
+}
+.achievement-card .card-info {
+  display: flex;
+  padding: 20px;
+  border-radius: 10px;
+}
+.achievement-card .card-info .card-title {
+  height: 75px;
+  margin-left: 10px;
+}
+.achievement-card .card-info .card-title p {
+  margin-top: 5px;
+  color: #696969;
+}
+
 .wrapper {
   margin: auto;
   width: 70%;
