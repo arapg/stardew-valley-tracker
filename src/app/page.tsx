@@ -5,6 +5,8 @@ import './styling/index.css'
 import Bundles from './Bundles'
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client'
 import Landing from './Landing'
+import Achievements from './Achievements'
+import MonsterEradicationGoals from './MonsterEradicationGoals'
 
 export default function Home() {
 	const { user } = useUser()
@@ -20,5 +22,9 @@ export default function Home() {
 		}
 	}, [user])
 
-	return <div className='wrapper'>{!user ? <Landing /> : <Bundles />}</div>
+	return (
+		<div className='wrapper'>
+			{!user ? <Landing /> : <MonsterEradicationGoals />}
+		</div>
+	)
 }
