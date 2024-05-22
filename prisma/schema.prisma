@@ -54,6 +54,7 @@ model MonsterEradicationGoal {
   id       Int    @id @default(autoincrement())
   monster  String
   quantity Int
+  reward   String
   url      String
 }
 
