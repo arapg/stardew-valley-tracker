@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import useUserIDStore from '../app/states/userID'
 import useCompletedAchievementsStore from '../app/states/completedAchievements'
 import AchievementCard from '../app/components/AchievementCard'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 export interface Achievement {
 	id: number
@@ -84,14 +85,17 @@ export default function Achievements() {
 	return (
 		<div>
 			<h1>Achievements</h1>
-			<p>Coming soon...</p>
-			{achievements.map((achievement) => (
-				<AchievementCard
-					key={achievement.id}
-					achievement={achievement}
-					completedAchievements={completedAchievements}
-				/>
-			))}
+			<ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 2000: 3 }}>
+				<Masonry>
+					{achievements.map((achievement) => (
+						<AchievementCard
+							key={achievement.id}
+							achievement={achievement}
+							completedAchievements={completedAchievements}
+						/>
+					))}
+				</Masonry>
+			</ResponsiveMasonry>
 		</div>
 	)
 }
