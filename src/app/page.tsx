@@ -1,15 +1,20 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './styling/index.css'
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client'
 import Landing from '../pages/Landing'
 import MonsterEradicationGoals from '../pages/monsters'
-import Bundles from '../pages/bundles'
-import Achievements from '../pages/achievements'
+import Sidebar from './components/Sidebar'
+import Bundles from '@/pages/bundles'
+import Achievements from '@/pages/achievements'
+import usePageStore from './states/setPage'
+import LogoutButton from './components/LogoutButton'
 
 export default function Home() {
 	const { user } = useUser()
+	const { page } = usePageStore()
+
 	useEffect(() => {
 		if (user) {
 			fetch('/api/saveUser', {
@@ -23,10 +28,18 @@ export default function Home() {
 	}, [user])
 
 	return (
-		<div className='wrapper'>
-			{!user ? <Landing /> : <MonsterEradicationGoals />}
-			{!user ? <Landing /> : <Achievements />}
-			{!user ? <Landing /> : <Bundles />}
-		</div>
+		<>
+			<div className='wrapper'>
+				{!user && <Landing />}
+				{user && (
+					<>
+						<Sidebar /> <LogoutButton />
+					</>
+				)}
+				{user && page === 'bundles' && <Bundles />}
+				{user && page === 'achievements' && <Achievements />}
+				{user && page === 'monsters' && <MonsterEradicationGoals />}
+			</div>
+		</>
 	)
 }
