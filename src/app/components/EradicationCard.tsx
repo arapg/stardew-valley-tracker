@@ -43,29 +43,23 @@ export default function EradicationCard({
 		}
 	}
 	return (
-		<ResponsiveMasonry>
-			<Masonry>
-				<div
-					className='achievement-card'
-					onClick={() => handleClick(eradicationGoal.id)}
-				>
-					<div
-						className={`card-info ${
-							eradicationGoalIsCompleted ? 'completed' : ''
-						}`}
-					>
-						<img src={eradicationGoal.url} alt={eradicationGoal.monster} />
-						<div className='card-title'>
-							<h2>{eradicationGoal.monster}</h2>
-							<p>{`Kill ${eradicationGoal.quantity} ${eradicationGoal.monster}`}</p>
-							<p>
-								<strong>Reward: </strong>
-								{eradicationGoal.reward}
-							</p>
-						</div>
-					</div>
+		<div
+			className='monster-card'
+			onClick={() => handleClick(eradicationGoal.id)}
+		>
+			<div
+				className={`card-info ${eradicationGoalIsCompleted ? 'completed' : ''}`}
+			>
+				<img src={eradicationGoal.url} alt={eradicationGoal.monster} />
+				<div className='card-title'>
+					<h2>{eradicationGoal.monster}</h2>
+					<p>{`Kill ${eradicationGoal.quantity} ${eradicationGoal.monster}`}</p>
+					<p>
+						<strong>Reward: </strong>
+						{eradicationGoal.reward}
+					</p>
 				</div>
-			</Masonry>
-		</ResponsiveMasonry>
+			</div>
+		</div>
 	)
 }
