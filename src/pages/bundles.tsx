@@ -140,9 +140,6 @@ export default function Bundles() {
 
 	return (
 		<>
-			<a href='/api/auth/logout'>
-				<button>Log Out</button>
-			</a>
 			<h1>Bundles</h1>
 			<div>
 				{Object.keys(bundlesByRoom).map((roomName) => (
