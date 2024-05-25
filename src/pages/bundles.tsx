@@ -153,8 +153,10 @@ export default function Bundles() {
 						</div>
 
 						<div className='bundle-wrapper'>
-							<ResponsiveMasonry>
-								<Masonry columnsCount={2}>
+							<ResponsiveMasonry
+								columnsCountBreakPoints={{ 350: 1, 1340: 2, 1920: 3 }}
+							>
+								<Masonry>
 									{bundlesByRoom[roomName].map((bundle) => {
 										const bundleItems = items.filter(
 											(item) => item.bundleName === bundle.name,

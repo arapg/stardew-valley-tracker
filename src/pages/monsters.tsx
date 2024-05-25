@@ -94,7 +94,7 @@ export default function MonsterEradicationGoals() {
 		<div>
 			<h1>EradicationGoals</h1>
 			<p>Coming soon...</p>
-			<ResponsiveMasonry>
+			<ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 1340: 2, 2000: 3 }}>
 				<Masonry>
 					{eradicationGoals.map((eradicationGoal) => (
 						<EradicationGoalCard
@@ -105,13 +105,6 @@ export default function MonsterEradicationGoals() {
 					))}
 				</Masonry>
 			</ResponsiveMasonry>
-			{/* {eradicationGoals.map((eradicationGoal) => (
-				<EradicationGoalCard
-					key={eradicationGoal.id}
-					eradicationGoal={eradicationGoal}
-					completedEradicationGoals={completedEradicationGoals}
-				/>
-			))} */}
 		</div>
 	)
 }

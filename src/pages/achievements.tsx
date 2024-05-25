@@ -85,7 +85,7 @@ export default function Achievements() {
 	return (
 		<div>
 			<h1>Achievements</h1>
-			<ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 2000: 3 }}>
+			<ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 1340: 2, 2000: 3 }}>
 				<Masonry>
 					{achievements.map((achievement) => (
 						<AchievementCard
