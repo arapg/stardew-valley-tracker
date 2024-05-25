@@ -12,7 +12,6 @@ export async function GET(
             select: { profilePicture: true }
         });
 
-        console.log(profilePicture?.profilePicture)
         return NextResponse.json(profilePicture?.profilePicture);
     } catch (error) {
         console.log(error)
