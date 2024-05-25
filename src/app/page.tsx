@@ -33,7 +33,7 @@ export default function Home() {
 				{!user && <Landing />}
 				{user && (
 					<>
-						<Sidebar /> <LogoutButton />
+						<Sidebar />
 					</>
 				)}
 				{user && page === 'bundles' && <Bundles />}
