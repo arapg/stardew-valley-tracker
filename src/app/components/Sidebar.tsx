@@ -1,6 +1,7 @@
 import { useUser } from '@auth0/nextjs-auth0/client'
 import Link from 'next/link'
 import usePageStore from '../states/setPage'
+import UserCard from './UserCard'
 
 export default function Sidebar() {
 	const { user } = useUser()
@@ -17,6 +18,7 @@ export default function Sidebar() {
 					Monster Eradication Goals
 				</button>
 			</div>
+			<UserCard />
 		</div>
 	)
 }
