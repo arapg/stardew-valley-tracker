@@ -9,7 +9,6 @@ import Sidebar from './components/Sidebar'
 import Bundles from '@/pages/bundles'
 import Achievements from '@/pages/achievements'
 import usePageStore from './states/setPage'
-import LogoutButton from './components/LogoutButton'
 
 export default function Home() {
 	const { user } = useUser()
@@ -31,11 +30,7 @@ export default function Home() {
 		<>
 			<div className='wrapper'>
 				{!user && <Landing />}
-				{user && (
-					<>
-						<Sidebar />
-					</>
-				)}
+				{user && <Sidebar />}
 				{user && page === 'bundles' && <Bundles />}
 				{user && page === 'achievements' && <Achievements />}
 				{user && page === 'monsters' && <MonsterEradicationGoals />}
