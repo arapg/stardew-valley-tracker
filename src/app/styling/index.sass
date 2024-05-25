@@ -7,6 +7,7 @@ h2, h3, p, span
 body
     color: #232320
     background-color: #e6f4dd
+    max-width: 100%
 
 button
     cursor: pointer
@@ -25,6 +26,38 @@ button:hover
     position: fixed
     bottom: 30px
     right: 30px
+    background: white
+    padding: 10px
+    border-radius: 10px
+    border: 1px solid $border
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)
+    z-index: 100
+
+    .user-card
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+
+    img
+        width: 50px
+        height: 50px
+        border-radius: 50%
+        margin-right: 10px
+
+    .user-info
+        display: flex
+        flex-direction: row
+        justify-content: start
+
+        p
+            align-self: center
+
+.popover
+    background: white
+    border: 1px solid $border
+    padding: 10px
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05)
+    border-radius: 10px
 
 .logout
     background-color: #de5d5d
@@ -34,7 +67,6 @@ button:hover
     background-color: #d13c3c
 
 .sidebar
-    border-right: 1px solid $border
     height: auto
     padding: 20px
     margin-left: -30px
@@ -83,11 +115,9 @@ button:hover
         p
             margin-top: 5px
             color: #696969
-
 .wrapper
     margin: auto
-    width: 70%
-
+    width: 60%
 .room-wrapper
     border:
         top: 1px solid rgba(black, 0.15)
@@ -176,7 +206,3 @@ button:hover
     img
         width: 75px
         height: 75px
-
-@media (max-width: 1200px)
-    .wrapper
-        width: 100%

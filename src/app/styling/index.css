@@ -6,6 +6,7 @@ h2, h3, p, span {
 body {
   color: #232320;
   background-color: #e6f4dd;
+  max-width: 100%;
 }
 
 button {
@@ -27,6 +28,39 @@ button:hover {
   position: fixed;
   bottom: 30px;
   right: 30px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.logout-container .user-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.logout-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.logout-container .user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+.logout-container .user-info p {
+  align-self: center;
+}
+
+.popover {
+  background: white;
+  border: 1px solid #E2E8F0;
+  padding: 10px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
 }
 
 .logout {
@@ -39,7 +73,6 @@ button:hover {
 }
 
 .sidebar {
-  border-right: 1px solid #E2E8F0;
   height: auto;
   padding: 20px;
   margin-left: -30px;
@@ -94,7 +127,7 @@ button:hover {
 
 .wrapper {
   margin: auto;
-  width: 70%;
+  width: 60%;
 }
 
 .room-wrapper {
@@ -190,10 +223,4 @@ button:hover {
 .bundle-card img {
   width: 75px;
   height: 75px;
-}
-
-@media (max-width: 1200px) {
-  .wrapper {
-    width: 100%;
-  }
 }/*# sourceMappingURL=index.css.map */
